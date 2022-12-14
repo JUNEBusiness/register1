@@ -7,8 +7,8 @@ import re
 @app.route('/register', methods =['GET', 'POST'])
 def register():
     msg = ''
-    if request.method == 'POST' and 'username' in request.json and 'password' in request.json and 'email' in request.json :
-        content = request.json
+    if request.method == 'POST' and 'username' in request.get_json and 'password' in request.get_json and 'email' in request.get_json :
+        content = request.get_json()
         company_legal_name = content['companyLegalName']
         company_name = content['companyName']
         username = content['username']
