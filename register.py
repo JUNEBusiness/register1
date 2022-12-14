@@ -47,7 +47,7 @@ def register():
             cursor.execute('INSERT INTO accounts VALUES (NULL, % s, % s, % s, % s, % s, % s)', (company_legal_name, company_name, username, email, phone_number, password_hash, ))
             mysql.connection.commit()
             msg = 'You have successfully registered !'
-            return jsonify({{'Message':msg}, {'status': 200},})
+            return jsonify([{'Message':msg,'status': 200}])
     elif request.method == 'POST':
         msg = 'Please fill out the form !'
-        return jsonify({'errorMessage':msg})
+        return jsonify([{'errorMessage':msg}])
