@@ -96,17 +96,12 @@ def register():
             elif password != confirm_password:
                 msg = 'Password does not match confirmation'
                 return jsonify({'errorMessage':msg})
-            else:
-                password_hash = generate_password_hash(password)
-                form = Accounts(companyLegalName=company_legal_name, companyName=company_name, username=username, email=email, phoneNumber=phone_number, password=password_hash)
-                db.session.add(form)
-                db.session.commit()
-                print(form)
-                msg = 'You have successfully registered !'
-                return jsonify({'Message':msg,'status': 200})
-        else:
-            msg = 'Please fill out the form !'
-            return jsonify([{'errorMessage':msg}])
+            password_hash = generate_password_hash(password)
+            form = Accounts(companyLegalName=company_legal_name, companyName=company_name, username=username, email=email, phoneNumber=phone_number, password=password_hash)
+            db.session.add(form)
+            db.session.commit()
+            msg = 'You have successfully registered !'
+            return jsonify({'Message':msg,'status': 200})
 
 if __name__ == "__main__":
     app.run(debug=True)
